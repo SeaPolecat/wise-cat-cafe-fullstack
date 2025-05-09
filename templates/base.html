@@ -5,6 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- double curly braces takes the code you write and gives the result as a string -->
+    <!-- do this to import css files with jinja -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     
     <!-- defines where the child files will add HTML code -->
     {% block head %}{% endblock %}
