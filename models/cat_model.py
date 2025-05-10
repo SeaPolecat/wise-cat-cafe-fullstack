@@ -12,3 +12,6 @@ class Cat(db.Model):
 
     def __repr__(self):
         return f'{self.id}) {self.name}. Summoned on {self.date_summoned}.'
+    
+    def __init__(self):
+        pass
