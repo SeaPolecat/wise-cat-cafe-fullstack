@@ -1,13 +1,22 @@
 <!-- inherit all the code from base.html -->
 {% extends 'base.html' %}
 
-<!-- add HTML code in here -->
+<!-- add HTML code in the blocks -->
 {% block head %}
-
+<title>Wise Cats</title>
 {% endblock %}
 
 {% block body %}
 
 <h1>WiWiWi!!!</h1>
+
+<!-- access variables set within app.py -->
+<img src="{{ img }}" alt="cat" style="width:500px">
+
+<table>
+    <form action="/" method="POST">
+        <input type="submit" value="make cat image!">
+    </form>
+</table>
 
 {% endblock %}
