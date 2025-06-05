@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
+from utils import api_utils
 
 from config import ProductionConfig
 
@@ -20,9 +21,17 @@ def create_app(config_class=ProductionConfig):
     with app.app_context():
         db.create_all()
 
-    @app.route('/')
+    @app.route('/', methods=['POST', 'GET'])
     def index():
-        return render_template('index.html')
+        if request.method == 'POST':
+            img = api_utils.get_cat_image()
+
+            # render template with variables
+            return render_template('index.html', img=img)
+        
+            # return redirect('/')
+        else:
+            return render_template('index.html')
     
     return app
 
