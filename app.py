@@ -25,9 +25,10 @@ def create_app(config_class=ProductionConfig):
     def index():
         if request.method == 'POST':
             img = api_utils.get_cat_image()
+            wisdom = api_utils.get_wisdom()
 
             # render template with variables
-            return render_template('index.html', img=img)
+            return render_template('index.html', img=img, wisdom=wisdom)
         
             # return redirect('/')
         else:
