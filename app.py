@@ -1,15 +1,18 @@
+import os
+
 from flask import Flask, render_template, request, redirect
-from flask_sqlalchemy import SQLAlchemy
 from utils import api_utils
 
 from config import ProductionConfig
 
-# uninitialized instance of db
-db = SQLAlchemy()
+from db import db
+from models.cat_model import Cats
 
 def create_app(config_class=ProductionConfig):
 
     app = Flask(__name__)
+
+    app.secret_key = os.getenv('FLASK_SECRET_KEY')
 
     # configure database
     app.config.from_object(config_class)
@@ -26,6 +29,8 @@ def create_app(config_class=ProductionConfig):
         if request.method == 'POST':
             img = api_utils.get_cat_image()
             wisdom = api_utils.get_wisdom()
+
+            Cats.summon_cat(img=img, wisdom=wisdom)
 
             # render template with variables
             return render_template('index.html', img=img, wisdom=wisdom)
