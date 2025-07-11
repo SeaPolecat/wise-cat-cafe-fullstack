@@ -6,7 +6,7 @@ from utils import api_utils
 from config import ProductionConfig
 
 from db import db
-from models.cat_model import Cats
+from models.cat_model import Cat
 
 def create_app(config_class=ProductionConfig):
 
@@ -40,7 +40,7 @@ def create_app(config_class=ProductionConfig):
         img = api_utils.get_cat_image()
         wisdom = api_utils.get_wisdom()
 
-        Cats.summon_cat(img=img, wisdom=wisdom)
+        Cat.summon_cat(img=img, wisdom=wisdom)
 
         # render template with variables
         return render_template('index.html', img=img, wisdom=wisdom)

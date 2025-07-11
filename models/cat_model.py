@@ -4,7 +4,7 @@ from db import db
 
 from datetime import datetime, timezone
 
-class Cats(db.Model):
+class Cat(db.Model):
 
     __tablename__ = 'cats'
 
@@ -32,13 +32,13 @@ class Cats(db.Model):
         }
     
     @classmethod
-    def to_cat(cls, data: dict[str, any]) -> 'Cats':
+    def to_cat(cls, data: dict[str, any]) -> 'Cat':
         return cls(**data)
 
 
     @classmethod
     def summon_cat(cls, img: str, wisdom: str) -> None:
-        new_cat = Cats(img, wisdom)
+        new_cat = Cat(img, wisdom)
 
         # store a cache of cats in the flask session, 
         # a dict that's unique to each user
