@@ -24,20 +24,26 @@ def create_app(config_class=ProductionConfig):
     with app.app_context():
         db.create_all()
 
-    @app.route('/', methods=['POST', 'GET'])
+
+    @app.route('/', methods=['GET'])
     def index():
-        if request.method == 'POST':
-            img = api_utils.get_cat_image()
-            wisdom = api_utils.get_wisdom()
+        return redirect('/home')
+    
 
-            Cats.summon_cat(img=img, wisdom=wisdom)
+    @app.route('/home', methods=['GET'])
+    def home():
+        return render_template('index.html')
 
-            # render template with variables
-            return render_template('index.html', img=img, wisdom=wisdom)
-        
-            # return redirect('/')
-        else:
-            return render_template('index.html')
+
+    @app.route('/summon', methods=['GET'])
+    def summon():
+        img = api_utils.get_cat_image()
+        wisdom = api_utils.get_wisdom()
+
+        Cats.summon_cat(img=img, wisdom=wisdom)
+
+        # render template with variables
+        return render_template('index.html', img=img, wisdom=wisdom)
     
     return app
 
