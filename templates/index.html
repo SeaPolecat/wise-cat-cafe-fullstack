@@ -25,8 +25,11 @@
     <br>
 
     <form action="/adopt" method="POST">
-        <input type="text" name="name" required> <!--temp input validation-->
-        <button>adopt cat!</button>
+        <div {% if hide_adopt %} style="display:none" {% endif %}>
+            
+            <input type="text" name="name" required> <!--temp input validation-->
+            <button>adopt cat!</button>
+        </div>
     </form>
 </table>
 
