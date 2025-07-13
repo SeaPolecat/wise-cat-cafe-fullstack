@@ -32,7 +32,7 @@ def create_app(config_class=ProductionConfig):
 
     @app.route('/home', methods=['GET'])
     def home():
-        return render_template('index.html')
+        return render_template('index.html', hide_adopt=True)
 
 
     @app.route('/summon', methods=['GET'])
@@ -43,7 +43,18 @@ def create_app(config_class=ProductionConfig):
         Cat.summon_cat(img=img, wisdom=wisdom)
 
         # render template with variables
-        return render_template('index.html', img=img, wisdom=wisdom)
+        return render_template('index.html', img=img, wisdom=wisdom, hide_adopt=False)
+    
+
+    @app.route('/adopt', methods=['GET', 'POST'])
+    def adopt():
+        if request.method == 'POST':
+            name = request.form['name']
+
+            Cat.adopt_cat(name=name)
+            
+        return redirect('/home')
+
     
     return app
 
