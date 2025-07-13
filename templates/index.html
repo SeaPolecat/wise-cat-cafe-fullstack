@@ -28,7 +28,16 @@
         <div {% if hide_adopt %} style="display:none" {% endif %}>
             
             <input type="text" name="name" required> <!--temp input validation-->
-            <button>adopt cat!</button>
+            <button>adopt!</button>
+        </div>
+    </form>
+
+    <br>
+
+    <form action="/home" method="GET">
+        <div {% if hide_adopt %} style="display:none" {% endif %}>
+            
+            <button>abandon!</button>
         </div>
     </form>
 </table>
