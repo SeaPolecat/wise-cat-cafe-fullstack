@@ -33,8 +33,13 @@ class Cat(db.Model):
     
     @classmethod
     def to_cat(cls, data: dict[str, any]) -> 'Cat':
-        return cls(**data)
+        cat = Cat(image=data['image'], wisdom=data['wisdom'])
 
+        cat.name = data['name']
+        cat.date_summoned = data['date_summoned']
+
+        return cat
+    
 
     @classmethod
     def summon_cat(cls, img: str, wisdom: str) -> None:
@@ -58,3 +63,15 @@ class Cat(db.Model):
                 cache.pop(-1)
 
             session['cache'] = cache
+
+
+    @classmethod
+    def adopt_cat(cls, name: str) -> None:
+        cat = Cat.to_cat(session.get('cache')[0])
+
+        cat.name = name
+
+        db.session.add(cat)
+        db.session.commit()
+
+        session.get('cache').pop(0)
