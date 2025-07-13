@@ -43,7 +43,7 @@ def create_app(config_class=ProductionConfig):
         Cat.summon_cat(img=img, wisdom=wisdom)
 
         # render template with variables
-        return render_template('index.html', img=img, wisdom=wisdom, hide_adopt=False)
+        return render_template('index.html', img=img, wisdom=wisdom, hide_summon=True)
     
 
     @app.route('/adopt', methods=['GET', 'POST'])

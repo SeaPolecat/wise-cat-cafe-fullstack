@@ -19,7 +19,10 @@
 
 <table>
     <form action="/summon" method="GET">
-        <button>summon new cat!</button>
+        <div {% if hide_summon %} style="display:none" {% endif %}>
+            
+            <button>summon new cat!</button>
+        </div>
     </form>
 
     <br>
@@ -36,7 +39,7 @@
 
     <form action="/home" method="GET">
         <div {% if hide_adopt %} style="display:none" {% endif %}>
-            
+
             <button>abandon!</button>
         </div>
     </form>
