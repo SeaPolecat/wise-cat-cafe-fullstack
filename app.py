@@ -1,18 +1,18 @@
 import os
 
 from flask import Flask, render_template, request, redirect
+from flask_login import LoginManager, login_required
 from utils import api_utils
 
 from config import ProductionConfig
 
 from db import db
 from models.cat_model import Cat
+from models.user_model import User
 
 def create_app(config_class=ProductionConfig):
 
     app = Flask(__name__)
-
-    app.secret_key = os.getenv('FLASK_SECRET_KEY')
 
     # configure database
     app.config.from_object(config_class)
@@ -24,6 +24,18 @@ def create_app(config_class=ProductionConfig):
     with app.app_context():
         db.create_all()
 
+    login_manager = LoginManager()
+
+    # set up login manager
+    login_manager.init_app(app)
+
+    # determine where to redirect if a login is needed
+    login_manager.login_view = 'login'
+
+    @login_manager.user_loader
+    def load_user(username):
+        return User.query.filter_by(username=username).first()
+
 
     @app.route('/', methods=['GET'])
     def index():
@@ -31,8 +43,19 @@ def create_app(config_class=ProductionConfig):
     
 
     @app.route('/home', methods=['GET'])
+    @login_required
     def home():
         return render_template('index.html', hide_adopt=True)
+    
+
+    @app.route('/login', methods=['GET', 'POST'])
+    def login(): # named 'login' because login_manager.login_view == 'login'
+        return render_template('login.html')
+    
+    
+    @app.route('/signup', methods=['GET', 'POST'])
+    def signup():
+        return render_template('signup.html')
 
 
     @app.route('/summon', methods=['GET'])
