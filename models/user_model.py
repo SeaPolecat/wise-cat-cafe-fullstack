@@ -1,7 +1,8 @@
 from db import db
+from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-class User(db.Model):
+class User(db.Model, UserMixin):
 
     __tablename__ = 'users'
 
@@ -12,6 +13,13 @@ class User(db.Model):
     def __init__(self, username: str, password: str):
         self.username = username
         self.hashed_password = generate_password_hash(password)
+
+    
+    def get_id(self) -> str:
+        """Returns the user's username. Overrides UserMixin's get_id method, so
+        the default user loader will use the username instead of id 
+        """
+        return self.username
 
 
     @staticmethod
@@ -27,6 +35,8 @@ class User(db.Model):
         """Finds errors within the given signup data.
         """
         errors = {}
+
+        # do more error checking here (e.g. disallowing special chars and spaces in username)
 
         if cls.find_user_by_username(username=username):
             errors['username_error'] = "Sorry, that username is taken"
