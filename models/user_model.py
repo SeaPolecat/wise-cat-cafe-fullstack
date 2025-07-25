@@ -15,14 +15,11 @@ class User(db.Model):
 
 
     @staticmethod
-    def is_duplicate_username(username: str) -> bool:
-        """Checks if a user with the given username already exists in the database.
+    def find_user_by_username(username: str) -> 'User':
+        """Given a username, finds and returns the corresponding user from the database.
         """
         # ilike ignores case (must use with filter, not filter_by)
-        if User.query.filter(User.username.ilike(username)).first():
-            return True
-        
-        return False
+        return User.query.filter(User.username.ilike(username)).first()
 
 
     @classmethod
@@ -31,7 +28,7 @@ class User(db.Model):
         """
         errors = {}
 
-        if cls.is_duplicate_username(username=username):
+        if cls.find_user_by_username(username=username):
             errors['username_error'] = "Sorry, that username is taken"
 
         elif len(password) < 10:
@@ -44,6 +41,16 @@ class User(db.Model):
             errors['confirmed_pass_error'] = "This did not match the password above"
 
         return errors
+    
+
+    @classmethod
+    def is_password_correct(cls, hashed_password: str, password: str) -> bool:
+        """Unhashes the hashed_password and checks if it matches the given password.
+        """
+        if not check_password_hash(hashed_password, password):
+            return False
+
+        return True
     
 
     @classmethod
