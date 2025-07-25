@@ -55,6 +55,22 @@ def create_app(config_class=ProductionConfig):
     
     @app.route('/signup', methods=['GET', 'POST'])
     def signup():
+        if request.method == 'POST':
+            username = request.form['username']
+            password = request.form['password']
+            confirmed_pass = request.form['confirm_password']
+
+            errors = User.find_signup_errors(username=username, password=password, confirmed_pass=confirmed_pass)
+
+            if errors:
+                # **errors unpacks the errors dict, turning each key-val into a separate parameter.
+                # pass username so the user doesn't need to re-enter it
+                return render_template('signup.html', username=username, **errors)
+            
+            User.create_user(username=username, password=password)
+
+            return redirect('/home')
+
         return render_template('signup.html')
 
 
