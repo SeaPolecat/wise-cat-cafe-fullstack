@@ -18,6 +18,10 @@ class User(db.Model):
     def is_duplicate_username(username: str) -> bool:
         """Checks if a user with the given username already exists in the database.
         """
+        # ilike ignores case (must use with filter, not filter_by)
+        if User.query.filter(User.username.ilike(username)).first():
+            return True
+        
         return False
 
 
@@ -28,7 +32,7 @@ class User(db.Model):
         errors = {}
 
         if cls.is_duplicate_username(username=username):
-            errors['username_error'] = "Username already exists"
+            errors['username_error'] = "Sorry, that username is taken"
 
         elif len(password) < 10:
             errors['password_error'] = "Password must be at least 10 characters long"
