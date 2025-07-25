@@ -67,7 +67,9 @@ def create_app(config_class=ProductionConfig):
             
             User.create_user(username=username, password=password)
 
-            return redirect('/home')
+            signup_success = "Account created successfully! You can now log in"
+
+            return render_template('login.html', signup_success=signup_success)
 
         return render_template('signup.html')
     
