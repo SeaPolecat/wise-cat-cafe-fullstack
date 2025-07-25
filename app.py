@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, render_template, request, redirect, session
-from flask_login import LoginManager, login_required, login_user, current_user
+from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 from utils import api_utils
 
 from config import ProductionConfig
@@ -95,6 +95,16 @@ def create_app(config_class=ProductionConfig):
             return redirect('/home')
 
         return render_template('login.html')
+    
+
+    @app.route('/logout', methods=['GET'])
+    @login_required
+    def logout():
+        """Logs out the user.
+        """
+        logout_user()
+
+        return redirect('/home')
 
 
     @app.route('/summon', methods=['GET'])
