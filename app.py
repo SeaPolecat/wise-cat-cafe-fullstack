@@ -1,7 +1,7 @@
 import os
 
-from flask import Flask, render_template, request, redirect
-from flask_login import LoginManager, login_required, login_user
+from flask import Flask, render_template, request, redirect, session
+from flask_login import LoginManager, login_required, login_user, current_user
 from utils import api_utils
 
 from config import ProductionConfig
@@ -34,7 +34,7 @@ def create_app(config_class=ProductionConfig):
 
     @login_manager.user_loader
     def load_user(username):
-        return User.query.filter_by(username=username).first()
+        return User.find_user_by_username(username)
 
 
     @app.route('/', methods=['GET'])
@@ -50,7 +50,10 @@ def create_app(config_class=ProductionConfig):
     
     @app.route('/signup', methods=['GET', 'POST'])
     def signup():
-        if request.method == 'POST':
+        if current_user.is_authenticated:
+            return redirect('/home')
+        
+        elif request.method == 'POST':
             username = request.form['username']
             password = request.form['password']
             confirmed_pass = request.form['confirm_password']
@@ -71,7 +74,10 @@ def create_app(config_class=ProductionConfig):
 
     @app.route('/login', methods=['GET', 'POST'])
     def login(): # named 'login' because login_manager.login_view == 'login'
-        if request.method == 'POST':
+        if current_user.is_authenticated:
+            return redirect('/home')
+
+        elif request.method == 'POST':
             username = request.form['username']
             password = request.form['password']
 
@@ -82,7 +88,7 @@ def create_app(config_class=ProductionConfig):
                 
                 return render_template('login.html', username=username, login_error=login_error)
 
-            # login_user automatically stores the user's username into the Flask session;
+            # login_user stores whatever user.get_id() returns into the Flask session as '_user_id';
             # it's then used by the default Flask user_loader above
             login_user(user)
             
