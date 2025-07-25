@@ -10,6 +10,12 @@
 
 <h1>WiWiWi!!!</h1>
 
+<h2>Welcome, {{ current_user.username }}!</h2>
+
+<form action="/logout" method="GET"">
+    <button>Log Out</button>
+</form>
+
 <h2>{{ wisdom }}</h2>
 
 <!-- access variables set within app.py -->
