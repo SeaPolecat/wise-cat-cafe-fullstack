@@ -5,12 +5,15 @@
 <form action="/signup" method="POST">
 
     <h2>Username</h2>
-    <input type="text" name="username" required>
+    <p style="color:red">{{ username_error }}</p>
+    <input type="text" name="username" value="{{ username }}" required></input>
 
     <h2>Password</h2>
+    <p style="color:red">{{ password_error }}</p>
     <input type="text" name="password" required>
 
     <h2>Confirm Password</h2>
+    <p style="color:red">{{ confirmed_pass_error }}</p>
     <input type="text" name="confirm_password" required>
 
     <button>Sign Up</button>
