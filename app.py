@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, render_template, request, redirect
-from flask_login import LoginManager, login_required
+from flask_login import LoginManager, login_required, login_user
 from utils import api_utils
 
 from config import ProductionConfig
@@ -47,11 +47,6 @@ def create_app(config_class=ProductionConfig):
     def home():
         return render_template('index.html', hide_adopt=True)
     
-
-    @app.route('/login', methods=['GET', 'POST'])
-    def login(): # named 'login' because login_manager.login_view == 'login'
-        return render_template('login.html')
-    
     
     @app.route('/signup', methods=['GET', 'POST'])
     def signup():
@@ -72,6 +67,28 @@ def create_app(config_class=ProductionConfig):
             return redirect('/home')
 
         return render_template('signup.html')
+    
+
+    @app.route('/login', methods=['GET', 'POST'])
+    def login(): # named 'login' because login_manager.login_view == 'login'
+        if request.method == 'POST':
+            username = request.form['username']
+            password = request.form['password']
+
+            user = User.find_user_by_username(username)
+
+            if not user or not User.is_password_correct(user.hashed_password, password):
+                login_error = "The username or password was incorrect"
+                
+                return render_template('login.html', username=username, login_error=login_error)
+
+            # login_user automatically stores the user's username into the Flask session;
+            # it's then used by the default Flask user_loader above
+            login_user(user)
+            
+            return redirect('/home')
+
+        return render_template('login.html')
 
 
     @app.route('/summon', methods=['GET'])
