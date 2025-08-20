@@ -8,31 +8,32 @@
 
 {% block body %}
 
-<h1>WiWiWi!!!</h1>
+<div class="login">
+    <img class="login" src="{{ url_for('static', filename='images/user.png') }}">
 
-<h2>Welcome, {{ current_user.username }}!</h2>
+    <!-- change to a form that redirects to login -->
+    <h1 class="login">{{ current_user.username }}</h1>
+</div>
 
-<form action="/logout" method="GET"">
-    <button>Log Out</button>
+<div class="logout">
+    <form action="/logout" method="GET"">
+        <button class="logout">Log out</button>
+    </form>
+</div>
+
+<video id="wise-cat-cafe" class="wise-cat-cafe" src="{{ url_for('static', filename='videos/wise_cat_cafe_anim.mp4') }}"></video>
+
+<form action="/summon" method="GET">
+    <button class="door-clickbox"></button>
 </form>
 
 <h2>{{ wisdom }}</h2>
 
-<!-- access variables set within app.py -->
-<img src="{{ img }}" alt="cat" style="width:500px">
+<img src="{{ img }}" style="width:500px">
 
 <br>
 
 <table>
-    <form action="/summon" method="GET">
-        <div {% if hide_summon %} style="display:none" {% endif %}>
-            
-            <button>summon new cat!</button>
-        </div>
-    </form>
-
-    <br>
-
     <form action="/adopt" method="POST">
         <div {% if hide_adopt %} style="display:none" {% endif %}>
             

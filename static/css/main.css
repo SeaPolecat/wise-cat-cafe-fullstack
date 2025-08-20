@@ -1,4 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Capriola&display=swap');
+
 body {
     margin: 0;
-    font-family: sans-serif;
+    background-color: lightblue;
+    overflow: hidden; /*no scroll*/
+}
+
+/* div {
+    border: solid 2px red;
+} */
+
+div.login {
+    position: absolute;
+    top: 2vh;
+    left: 1vw;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
+img.login {
+    position: static;
+    display: inline-block;
+    width: 2.3vw;
+    padding-left: 5px;
+    padding-top: 8px;
+}
+
+h1.login {
+    position: relative;
+    display: inline-block;
+    top: -0.55vh;
+    color: #2e2e2e;
+    font-family: "capriola";
+    font-size: 30px;
+    margin: 0;
+    padding-right: 10px;
+}
+
+div.logout {
+    position: absolute;
+    top: 10vh;
+    left: 1vw;
+    background-color: rgba(255, 255, 255, 0.5);
+    /* 46, 46, 46 = #2e2e2e */
+    border: solid 2px rgba(46, 46, 46, 0.5);
+    border-radius: 8px;
+}
+
+div.logout:hover {
+    background-color: red;
+}
+
+button.logout {
+    position: static;
+    background: none;
+    color: #1A1A2E;
+    font-family: "capriola";
+    font-size: 20px;
+    border: none;
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+video.wise-cat-cafe {
+    position: absolute;
+    width: 130%;
+    left: -15vw;
+    top: -10vw;
+    z-index: -1;
+}
+
+button.door-clickbox {
+    position: absolute;
+    width: 156px;
+    height: 308px;
+    top: 405px;
+    left: 622px;
+    border: none;
+    opacity: 0.5;
+}
+
+button.door-clickbox:hover {
+    background-color: red;
+    opacity: 0.5;
 }
