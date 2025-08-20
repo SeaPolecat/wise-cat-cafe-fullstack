@@ -23,13 +23,16 @@
 
 <video id="wise-cat-cafe" class="wise-cat-cafe" src="{{ url_for('static', filename='videos/wise_cat_cafe_anim.mp4') }}"></video>
 
-<form action="/summon" method="GET">
+<form onsubmit="open_door(); activate_black_bars()" action="/summon" method="GET">
     <button class="door-clickbox"></button>
 </form>
 
 <h2>{{ wisdom }}</h2>
 
 <img src="{{ img }}" style="width:500px">
+
+<div id="black-bar-top" class="black-bar-top"></div>
+<div id="black-bar-bottom" class="black-bar-bottom"></div>
 
 <br>
 
@@ -51,5 +54,21 @@
         </div>
     </form>
 </table>
+
+<script>
+    function open_door() {
+        var video = document.getElementById("wise-cat-cafe");
+
+        video.play();
+    }
+
+    function activate_black_bars() {
+        var black_bar_top = document.getElementById("black-bar-top");
+        var black_bar_bottom = document.getElementById("black-bar-bottom");
+
+        black_bar_top.classList.add("active");
+        black_bar_bottom.classList.add("active");
+    }
+</script>
 
 {% endblock %}
