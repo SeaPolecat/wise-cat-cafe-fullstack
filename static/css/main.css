@@ -2,7 +2,7 @@
 
 body {
     margin: 0;
-    background-color: lightblue;
+    background-color: black;
     overflow: hidden; /*no scroll*/
 }
 
@@ -95,7 +95,7 @@ div.black-bar-top {
     top: -9vh;
     background-color: black;
     z-index: -1;
-    transition: 0.5s ease-in-out;
+    transition: 0.5s ease-out;
 }
 
 div.black-bar-top.active {
@@ -106,12 +106,28 @@ div.black-bar-bottom {
     position: fixed;
     width: 100%;
     height: 9vh;
-    top: 100vh;
+    transform: translate(0, -100%); /* changing the origin */
+    top: 109vh;
     background-color: black;
     z-index: 2;
-    transition: 0.5s ease-in-out;
+    transition: 0.5s ease-out;
 }
 
 div.black-bar-bottom.active {
-    top: 91vh;
+    top: 100vh;
+}
+
+img.cat-img {
+    position: absolute;
+    height: 1px;
+    top: 65vh;
+    left: 46vw;
+    transition: 1s linear;
+}
+
+img.active {
+    transform: translate(-50%, -50%);
+    top: 50vh;
+    left: 50vw;
+    height: 300px;
 }
