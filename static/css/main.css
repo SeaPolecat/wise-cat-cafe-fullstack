@@ -10,12 +10,18 @@ body {
     border: solid 2px red;
 } */
 
-div.login {
+button.login {
     position: absolute;
     top: 2vh;
     left: 1vw;
     background-color: rgba(255, 255, 255, 0.5);
+    border: none;
     border-radius: 10px;
+    transition: 0.2s;
+}
+
+button.login:hover {
+    background-color: white;
 }
 
 img.login {
@@ -37,32 +43,26 @@ h1.login {
     padding-right: 10px;
 }
 
-div.logout {
-    position: absolute;
-    top: 9vh;
-    left: 1vw;
-    background-color: rgba(255, 255, 255, 0.5);
-    /* 46, 46, 46 = #2e2e2e */
-    border: solid 2px rgba(46, 46, 46, 0.5);
-    border-radius: 8px;
-}
-
-div.logout:hover {
-    background-color: red;
-}
-
 button.logout {
-    position: static;
-    background: none;
+    position: absolute;
+    top: 9.5vh;
+    left: 1vw;
     color: #1A1A2E;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: solid 2px rgba(46, 46, 46, 0.5); /* #2e2e2e */
+    border-radius: 8px;
     font-family: "capriola";
     font-size: 20px;
-    border: none;
     margin: 0;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
+    transition: 0.2s;
+}
+
+button.logout:hover {
+    background-color: white;
 }
 
 video.wise-cat-cafe {

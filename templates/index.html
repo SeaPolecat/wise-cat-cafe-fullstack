@@ -8,23 +8,23 @@
 
 {% block body %}
 
-<div class="login">
-    <img class="login" src="{{ url_for('static', filename='images/user.png') }}">
+<form action="/login" method="GET">
+    <button class="login" {% if current_user.is_authenticated %} style="pointer-events:none" {% endif %}>
 
-    <!-- change to a form that redirects to login -->
-    <h1 class="login">{{ current_user.username }}</h1>
-</div>
+        <img class="login" src="{{ url_for('static', filename='images/user.png') }}">
+        
+        <h1 class="login">{% if current_user.is_authenticated %} {{ current_user.username }} {% else %} Log in {% endif %}</h1>
+    </button>
+</form>
 
-<div class="logout">
-    <form action="/logout" method="GET"">
-        <button class="logout">Log out</button>
-    </form>
-</div>
+<form action="/logout" method="GET"">
+    <button class="logout" {% if not current_user.is_authenticated %} style="display:none" {% endif %}>Log out</button>
+</form>
 
 <video id="wise-cat-cafe" class="wise-cat-cafe" src="{{ url_for('static', filename='videos/wise_cat_cafe_anim.mp4') }}"></video>
 
-<form onsubmit="open_door(); activate_black_bars()" action="/summon" method="GET">
-    <button class="door-clickbox"></button>
+<form action="/summon" method="GET" onsubmit="open_door(); activate_black_bars()">
+    <button id="door-clickbox" class="door-clickbox"></button>
 </form>
 
 <h2>{{ wisdom }}</h2>
@@ -58,8 +58,10 @@
 <script>
     function open_door() {
         var video = document.getElementById("wise-cat-cafe");
+        var door_clickbox = document.getElementById("door-clickbox");
 
         video.play();
+        door_clickbox.style.pointerEvents = "none";
     }
 
     function activate_black_bars() {

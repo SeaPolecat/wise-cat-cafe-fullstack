@@ -43,7 +43,6 @@ def create_app(config_class=ProductionConfig):
     
 
     @app.route('/home', methods=['GET'])
-    @login_required
     def home():
         return render_template('index.html', hide_adopt=True)
     
@@ -110,6 +109,7 @@ def create_app(config_class=ProductionConfig):
 
 
     @app.route('/summon', methods=['GET'])
+    @login_required
     def summon():
         img = api_utils.get_cat_image()
         wisdom = api_utils.get_wisdom()
@@ -121,6 +121,7 @@ def create_app(config_class=ProductionConfig):
     
 
     @app.route('/adopt', methods=['GET', 'POST'])
+    @login_required
     def adopt():
         if request.method == 'POST':
             name = request.form['name']
