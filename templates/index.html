@@ -13,24 +13,28 @@
 
 {% block body %}
 
-<video id="wise-cat-cafe" class="wise-cat-cafe" src="{{ url_for('static', filename='videos/wise_cat_cafe_anim.mp4') }}"></video>
+<video id="cafe-video" class="cafe-video" src="{{ url_for('static', filename='videos/wise_cat_cafe_anim.mp4') }}"></video>
 
 <form id="summon-form" action="/summon" method="GET">
-    <button id="door-clickbox" class="door-clickbox"></button>
+    <button id="door-button" class="door-button"></button>
 </form>
 
 <h2>{{ wisdom }}</h2>
 
-<img id="cat-img" class="cat-img" src="{{ img }}"">
+<div id="x-blackbar-div-top"
+class="x-blackbar-div top {% if summoned %} active1 {% endif %}"></div>
 
-<div id="black-bar-top" class="black-bar top"></div>
-<div id="black-bar-bottom" class="black-bar bottom"></div>
+<div id="x-blackbar-div-bottom"
+class="x-blackbar-div bottom {% if summoned %} active1 {% endif %}"></div>
+
+<img id="cat-img" class="cat-img" src="{{ img }}">
 
 <br>
 
 <table>
     <form action="/adopt" method="POST">
-        <div {% if hide_adopt %} style="display:none" {% endif %}>
+        <div
+        {% if hide_adopt %} style="display:none" {% endif %}>
             
             <input type="text" name="name" required> <!--temp input validation-->
             <button>adopt!</button>
@@ -40,7 +44,8 @@
     <br>
 
     <form action="/home" method="GET">
-        <div {% if hide_adopt %} style="display:none" {% endif %}>
+        <div
+        {% if hide_adopt %} style="display:none" {% endif %}>
 
             <button>abandon!</button>
         </div>
@@ -50,44 +55,29 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         if("{{ summoned }}") {
-            blackBarTop = document.getElementById("black-bar-top");
-            blackBarBottom = document.getElementById("black-bar-bottom");
-
-            document.getElementById("wise-cat-cafe").currentTime = 50;
-
-            blackBarTop.style.transition = "none";
-            blackBarTop.classList.add("active1");
-
-            blackBarBottom.style.transition = "none";
-            blackBarBottom.classList.add("active1");
+            document.getElementById("cafe-video").currentTime = 50;
 
             document.getElementById("cat-img").classList.add("active");
 
             setTimeout(() => {
-                blackBarTop.style.transition = "1s ease-out";
-                blackBarTop.classList.add("active2");
-
-                blackBarBottom.style.transition = "1s ease-out";
-                blackBarBottom.classList.add("active2");
-
+                document.getElementById("x-blackbar-div-top").classList.add("active2");
+                document.getElementById("x-blackbar-div-bottom").classList.add("active2");
             }, 1000);
 
             setTimeout(() => {
                 console.log("bruh");
 
             }, 2000);
-        } else {
-            // hide stuff
         }
     })
 
     document.getElementById("summon-form").addEventListener("submit", () => {
-        document.getElementById("wise-cat-cafe").play();
+        document.getElementById("cafe-video").play();
 
-        document.getElementById("door-clickbox").style.pointerEvents = "none";
+        document.getElementById("door-button").style.pointerEvents = "none";
 
-        document.getElementById("black-bar-top").classList.add("active1");
-        document.getElementById("black-bar-bottom").classList.add("active1");
+        document.getElementById("x-blackbar-div-top").classList.add("active1");
+        document.getElementById("x-blackbar-div-bottom").classList.add("active1");
     })
 </script>
 

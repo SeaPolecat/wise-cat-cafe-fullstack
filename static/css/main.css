@@ -10,7 +10,7 @@ body {
     border: solid 2px red;
 } */
 
-button.login {
+button.login-button {
     position: absolute;
     top: 2vh;
     left: 1vw;
@@ -20,11 +20,11 @@ button.login {
     transition: 0.2s;
 }
 
-button.login:hover {
+button.login-button:hover {
     background-color: white;
 }
 
-img.login {
+img.login-img {
     position: static;
     display: inline-block;
     width: 2.3vw;
@@ -32,7 +32,7 @@ img.login {
     padding-top: 8px;
 }
 
-h1.login {
+h1.login-h1 {
     position: relative;
     display: inline-block;
     top: -0.55vh;
@@ -43,7 +43,7 @@ h1.login {
     padding-right: 10px;
 }
 
-button.logout {
+button.logout-button {
     position: absolute;
     top: 9.5vh;
     left: 1vw;
@@ -61,11 +61,11 @@ button.logout {
     transition: 0.2s;
 }
 
-button.logout:hover {
+button.logout-button:hover {
     background-color: white;
 }
 
-video.wise-cat-cafe {
+video.cafe-video {
     position: absolute;
     width: 130%;
     left: -15vw;
@@ -73,7 +73,7 @@ video.wise-cat-cafe {
     z-index: -1;
 }
 
-button.door-clickbox {
+button.door-button {
     position: absolute;
     width: 156px;
     height: 308px;
@@ -83,12 +83,12 @@ button.door-clickbox {
     opacity: 0;
 }
 
-button.door-clickbox:hover {
+button.door-button:hover {
     background-color: red;
     opacity: 0;
 }
 
-div.black-bar {
+div.x-blackbar-div {
     position: fixed;
     width: 100%;
     height: 50vh;
@@ -97,28 +97,28 @@ div.black-bar {
     transition: 0.5s ease-out;
 }
 
-div.black-bar.top {
+div.x-blackbar-div.top {
     transform: translate(0, -100%); /* changing the origin */
     top: 0;
 }
 
-div.black-bar.top.active1 {
+div.x-blackbar-div.top.active1 {
     top: 9vh;
 }
 
-div.black-bar.top.active2 {
+div.x-blackbar-div.top.active2 {
     top: 50vh;
 }
 
-div.black-bar.bottom {
+div.x-blackbar-div.bottom {
     top: 100vh;
 }
 
-div.black-bar.bottom.active1 {
+div.x-blackbar-div.bottom.active1 {
     top: 91vh;
 }
 
-div.black-bar.bottom.active2 {
+div.x-blackbar-div.bottom.active2 {
     top: 50vh;
 }
 
@@ -130,7 +130,7 @@ img.cat-img {
     transition: 1s linear;
 }
 
-img.active {
+img.cat-img.active {
     transform: translate(-50%, -50%);
     top: 50vh;
     left: 50vw;
