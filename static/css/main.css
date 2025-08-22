@@ -88,33 +88,38 @@ button.door-clickbox:hover {
     opacity: 0;
 }
 
-div.black-bar-top {
+div.black-bar {
     position: fixed;
     width: 100%;
-    height: 9vh;
-    top: -9vh;
+    height: 50vh;
     background-color: black;
     z-index: -1;
     transition: 0.5s ease-out;
 }
 
-div.black-bar-top.active {
+div.black-bar.top {
+    transform: translate(0, -100%); /* changing the origin */
     top: 0;
 }
 
-div.black-bar-bottom {
-    position: fixed;
-    width: 100%;
-    height: 9vh;
-    transform: translate(0, -100%); /* changing the origin */
-    top: 109vh;
-    background-color: black;
-    z-index: 2;
-    transition: 0.5s ease-out;
+div.black-bar.top.active1 {
+    top: 9vh;
 }
 
-div.black-bar-bottom.active {
+div.black-bar.top.active2 {
+    top: 50vh;
+}
+
+div.black-bar.bottom {
     top: 100vh;
+}
+
+div.black-bar.bottom.active1 {
+    top: 91vh;
+}
+
+div.black-bar.bottom.active2 {
+    top: 50vh;
 }
 
 img.cat-img {

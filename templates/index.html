@@ -15,16 +15,16 @@
 
 <video id="wise-cat-cafe" class="wise-cat-cafe" src="{{ url_for('static', filename='videos/wise_cat_cafe_anim.mp4') }}"></video>
 
-<form action="/summon" method="GET" onsubmit="open_door(); activate_black_bars()">
+<form id="summon-form" action="/summon" method="GET">
     <button id="door-clickbox" class="door-clickbox"></button>
 </form>
 
 <h2>{{ wisdom }}</h2>
 
-<img id="cat-img" class="cat-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCsqRYLAFDdL4Ix_AHai7kNVyoPV9Ssv1xg&s">
+<img id="cat-img" class="cat-img" src="{{ img }}"">
 
-<div id="black-bar-top" class="black-bar-top"></div>
-<div id="black-bar-bottom" class="black-bar-bottom"></div>
+<div id="black-bar-top" class="black-bar top"></div>
+<div id="black-bar-bottom" class="black-bar bottom"></div>
 
 <br>
 
@@ -48,45 +48,47 @@
 </table>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", () => {
         if("{{ summoned }}") {
-            var wcc_video = document.getElementById("wise-cat-cafe");
-            var catImage = document.getElementById("cat-img");
+            blackBarTop = document.getElementById("black-bar-top");
+            blackBarBottom = document.getElementById("black-bar-bottom");
 
-            wcc_video.currentTime = 50;
-
-            catImage.classList.add("active");
-
-            var blackBarTop = document.getElementById("black-bar-top");
+            document.getElementById("wise-cat-cafe").currentTime = 50;
 
             blackBarTop.style.transition = "none";
-            blackBarTop.classList.add("active");
-
-            var blackBarBottom = document.getElementById("black-bar-bottom");
+            blackBarTop.classList.add("active1");
 
             blackBarBottom.style.transition = "none";
-            blackBarBottom.classList.add("active");
+            blackBarBottom.classList.add("active1");
+
+            document.getElementById("cat-img").classList.add("active");
+
+            setTimeout(() => {
+                blackBarTop.style.transition = "1s ease-out";
+                blackBarTop.classList.add("active2");
+
+                blackBarBottom.style.transition = "1s ease-out";
+                blackBarBottom.classList.add("active2");
+
+            }, 1000);
+
+            setTimeout(() => {
+                console.log("bruh");
+
+            }, 2000);
+        } else {
+            // hide stuff
         }
     })
 
-    // for every function below, use event listeners instead of extra stuff in the HTML
-    // (keeps things clean)
+    document.getElementById("summon-form").addEventListener("submit", () => {
+        document.getElementById("wise-cat-cafe").play();
 
-    function open_door() {
-        var video = document.getElementById("wise-cat-cafe");
-        var door_clickbox = document.getElementById("door-clickbox");
+        document.getElementById("door-clickbox").style.pointerEvents = "none";
 
-        video.play();
-        door_clickbox.style.pointerEvents = "none";
-    }
-
-    function activate_black_bars() {
-        var black_bar_top = document.getElementById("black-bar-top");
-        var black_bar_bottom = document.getElementById("black-bar-bottom");
-
-        black_bar_top.classList.add("active");
-        black_bar_bottom.classList.add("active");
-    }
+        document.getElementById("black-bar-top").classList.add("active1");
+        document.getElementById("black-bar-bottom").classList.add("active1");
+    })
 </script>
 
 {% endblock %}
