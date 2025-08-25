@@ -16,69 +16,106 @@
 <video id="cafe-video" class="cafe-video" src="{{ url_for('static', filename='videos/wise_cat_cafe_anim.mp4') }}"></video>
 
 <form id="summon-form" action="/summon" method="GET">
-    <button id="door-button" class="door-button"></button>
+    <button id="door-button" class="door-button"
+    {% if summoned %} style="pointer-events:none" {% endif %}></button>
 </form>
-
-<h2>{{ wisdom }}</h2>
 
 <div id="x-blackbar-div-top"
 class="x-blackbar-div top {% if summoned %} active1 {% endif %}"></div>
 
 <div id="x-blackbar-div-bottom"
 class="x-blackbar-div bottom {% if summoned %} active1 {% endif %}"></div>
-
+    
 <img id="cat-img" class="cat-img" src="{{ img }}">
 
-<br>
+<div id="wisdom-div" class="wisdom-div">{{ wisdom }}</div>
 
-<table>
-    <form action="/adopt" method="POST">
-        <div
-        {% if hide_adopt %} style="display:none" {% endif %}>
-            
-            <input type="text" name="name" required> <!--temp input validation-->
-            <button>adopt!</button>
-        </div>
-    </form>
+<!-- <form action="/adopt" method="POST">
+    <div
+    {% if hide_adopt %} style="display:none" {% endif %}>
+        <input type="text" name="name" required>
+        <button>adopt!</button>
+    </div>
+</form> -->
 
-    <br>
+<form action="/home" method="GET">
+    <button id="adopt-button" class="adopt-button">Adopt</button>
+</form>
 
-    <form action="/home" method="GET">
-        <div
-        {% if hide_adopt %} style="display:none" {% endif %}>
-
-            <button>abandon!</button>
-        </div>
-    </form>
-</table>
+<form action="/home" method="GET">
+    <button id="abandon-button" class="abandon-button">Abandon</button>
+</form>
 
 <script>
+    cafeVideo = document.getElementById("cafe-video");
+    catImg = document.getElementById("cat-img");
+    xBlackbarTop = document.getElementById("x-blackbar-div-top");
+    xBlackbarBottom = document.getElementById("x-blackbar-div-bottom");
+    summonForm = document.getElementById("summon-form");
+    doorButton = document.getElementById("door-button");
+    wisdomDiv = document.getElementById("wisdom-div");
+    adoptButton = document.getElementById("adopt-button");
+    abandonButton = document.getElementById("abandon-button");
+
     document.addEventListener("DOMContentLoaded", () => {
         if("{{ summoned }}") {
-            document.getElementById("cafe-video").currentTime = 50;
+            cafeVideo.currentTime = 50;
+        }
+    });
 
-            document.getElementById("cat-img").classList.add("active");
+    summonForm.addEventListener("submit", () => {
+        doorButton.style.pointerEvents = "none";
+
+        cafeVideo.play();
+
+        xBlackbarTop.classList.add("active1");
+        xBlackbarBottom.classList.add("active1");
+    });
+
+    function test() {
+        doorButton.style.pointerEvents = "none";
+
+        cafeVideo.play();
+
+        xBlackbarTop.classList.add("active1");
+        xBlackbarBottom.classList.add("active1");
+    }
+    
+    catImg.addEventListener("load", (event) => {
+        if("{{ summoned }}") {
+            event.target.classList.add("active");
 
             setTimeout(() => {
-                document.getElementById("x-blackbar-div-top").classList.add("active2");
-                document.getElementById("x-blackbar-div-bottom").classList.add("active2");
+                xBlackbarTop.classList.add("active2");
+                xBlackbarBottom.classList.add("active2");
             }, 1000);
 
             setTimeout(() => {
-                console.log("bruh");
+                catImgWidthPX = catImg.offsetWidth;
+                catImgHeightPX = catImg.offsetHeight;
+                catImgWidthVW = (catImgWidthPX / window.innerWidth) * 100;
+                catImgHeightVH = (catImgHeightPX / window.innerHeight) * 100;
 
-            }, 2000);
+                if(catImgWidthPX > catImgHeightPX) {
+                    wisdomDivLeftVW = 50 - catImgWidthVW / 2;
+
+                    wisdomDiv.style.left = wisdomDivLeftVW + "vw";
+                    wisdomDiv.style.maxWidth = catImgWidthVW + "vw";
+
+                } else {
+                    xPaddingVW = 30;
+
+                    wisdomDiv.style.left = xPaddingVW + "vw";
+                    wisdomDiv.style.maxWidth = (100 - 2 * xPaddingVW) + "vw";
+                }
+
+                wisdomDiv.classList.add("active");
+
+                adoptButton.classList.add("active");
+                abandonButton.classList.add("active");
+            }, 1500);
         }
-    })
-
-    document.getElementById("summon-form").addEventListener("submit", () => {
-        document.getElementById("cafe-video").play();
-
-        document.getElementById("door-button").style.pointerEvents = "none";
-
-        document.getElementById("x-blackbar-div-top").classList.add("active1");
-        document.getElementById("x-blackbar-div-bottom").classList.add("active1");
-    })
+    });
 </script>
 
 {% endblock %}
