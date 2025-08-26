@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Capriola&display=swap');
 
 body {
-    margin: 0;
-    background-color: black;
     overflow: hidden; /*no scroll*/
+    margin: 0;
+    background: black;
 }
 
 /* div {
@@ -12,69 +12,66 @@ body {
 
 button.login-button {
     position: absolute;
+    display: block;
     top: 2vh;
     left: 1vw;
-    background-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.5);
     border: none;
     border-radius: 10px;
     transition: 0.2s;
 }
 
 button.login-button:hover {
-    background-color: white;
+    background: white;
 }
 
 img.login-img {
     position: static;
     display: inline-block;
     width: 2.3vw;
-    padding-left: 5px;
-    padding-top: 8px;
+    padding: 8px 0 0 5px;
 }
 
 h1.login-h1 {
     position: relative;
     display: inline-block;
     top: -0.55vh;
-    color: #2e2e2e;
-    font-family: "capriola";
-    font-size: 30px;
     margin: 0;
-    padding-right: 10px;
+    padding: 0 10px 0 0;
+    font: 30px "capriola";
+    color: #2e2e2e;
 }
 
 button.logout-button {
     position: absolute;
+    display: block;
     top: 9.5vh;
     left: 1vw;
+    margin: 0;
+    padding: 5px 10px 5px 10px;
+    font: 20px "capriola";
     color: #1A1A2E;
-    background-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.5);
     border: solid 2px rgba(46, 46, 46, 0.5); /* #2e2e2e */
     border-radius: 8px;
-    font-family: "capriola";
-    font-size: 20px;
-    margin: 0;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
     transition: 0.2s;
 }
 
 button.logout-button:hover {
-    background-color: white;
+    background: white;
 }
 
 video.cafe-video {
     position: absolute;
+    display: block;
     width: 130%;
-    left: -15vw;
     top: -10vw;
-    z-index: -2;
+    left: -15vw;
 }
 
 button.door-button {
     position: absolute;
+    display: block;
     width: 156px;
     height: 308px;
     top: 405px;
@@ -84,6 +81,6 @@ button.door-button {
 }
 
 button.door-button:hover {
-    background-color: red;
-    opacity: 0;
+    background: white;
+    opacity: 0.5;
 }
