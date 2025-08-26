@@ -10,57 +10,6 @@ body {
     border: solid 2px red;
 } */
 
-button.login-button {
-    position: absolute;
-    display: block;
-    top: 2vh;
-    left: 1vw;
-    background: rgba(255, 255, 255, 0.5);
-    border: none;
-    border-radius: 10px;
-    transition: 0.2s;
-}
-
-button.login-button:hover {
-    background: white;
-}
-
-img.login-img {
-    position: static;
-    display: inline-block;
-    width: 2.3vw;
-    padding: 8px 0 0 5px;
-}
-
-h1.login-h1 {
-    position: relative;
-    display: inline-block;
-    top: -0.55vh;
-    margin: 0;
-    padding: 0 10px 0 0;
-    font: 30px "capriola";
-    color: #2e2e2e;
-}
-
-button.logout-button {
-    position: absolute;
-    display: block;
-    top: 9.5vh;
-    left: 1vw;
-    margin: 0;
-    padding: 5px 10px 5px 10px;
-    font: 20px "capriola";
-    color: #1A1A2E;
-    background: rgba(255, 255, 255, 0.5);
-    border: solid 2px rgba(46, 46, 46, 0.5); /* #2e2e2e */
-    border-radius: 8px;
-    transition: 0.2s;
-}
-
-button.logout-button:hover {
-    background: white;
-}
-
 video.cafe-video {
     position: absolute;
     display: block;
