@@ -10,4 +10,24 @@
 
 {% block body %}
 
+<img id="cat-img" class="cat-img" src="{{ img }}">
+
+<div id="wisdom-div" class="wisdom-div">{{ wisdom }}</div>
+
+<!-- <form action="/adopt" method="POST">
+    <div
+    {% if hide_adopt %} style="display:none" {% endif %}>
+        <input type="text" name="name" required>
+        <button>adopt!</button>
+    </div>
+</form> -->
+
+<form action="/home" method="GET">
+    <button id="adopt-button" class="adopt-button">Adopt</button>
+</form>
+
+<form action="/home" method="GET">
+    <button id="abandon-button" class="abandon-button">Abandon</button>
+</form>
+
 {% endblock %}
