@@ -13,74 +13,57 @@
 
 {% block body %}
 
-<video id="cafe-video" class="cafe-video" src="{{ url_for('static', filename='videos/wise_cat_cafe_anim.mp4') }}"></video>
+<video id="cafe-video" src="{{ url_for('static', filename='videos/cafe-video.mp4') }}"></video>
 
 <form id="summon-form" action="/summon" method="GET">
-    <button id="door-button" class="door-button"
-    {% if summoned %} style="pointer-events:none" {% endif %}></button>
+    <button id="door-button"></button>
 </form>
 
+<div id="circle"></div>
+
 <script>
-    cafeVideo = document.getElementById("cafe-video");
-    catImg = document.getElementById("cat-img");
-    xBlackbarTop = document.getElementById("x-blackbar-div-top");
-    xBlackbarBottom = document.getElementById("x-blackbar-div-bottom");
     summonForm = document.getElementById("summon-form");
-    doorButton = document.getElementById("door-button");
-    wisdomDiv = document.getElementById("wisdom-div");
-    adoptButton = document.getElementById("adopt-button");
-    abandonButton = document.getElementById("abandon-button");
 
-    document.addEventListener("DOMContentLoaded", () => {
-        if("{{ summoned }}") {
-            cafeVideo.currentTime = 50;
-        }
-    });
+    summonForm.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-    summonForm.addEventListener("submit", () => {
+        doorButton = document.getElementById("door-button");
+        cafeVideo = document.getElementById("cafe-video");
+
         doorButton.style.pointerEvents = "none";
-
         cafeVideo.play();
 
-        xBlackbarTop.classList.add("active1");
-        xBlackbarBottom.classList.add("active1");
+        setTimeout(() => {
+            circle.classList.add("expand");
+        }, 700);
+
+        setTimeout(() => {
+            activateLoadingText();
+
+            summonForm.submit();
+        }, 1800);
     });
-    
-    catImg.addEventListener("load", (event) => {
-        if("{{ summoned }}") {
-            event.target.classList.add("active");
 
-            setTimeout(() => {
-                xBlackbarTop.classList.add("active2");
-                xBlackbarBottom.classList.add("active2");
-            }, 1000);
+    function activateLoadingText() {
+        circle = document.getElementById("circle");
+        
+        circle.textContent = "Loading";
 
-            setTimeout(() => {
-                catImgWidthPX = catImg.offsetWidth;
-                catImgHeightPX = catImg.offsetHeight;
-                catImgWidthVW = (catImgWidthPX / window.innerWidth) * 100;
-                catImgHeightVH = (catImgHeightPX / window.innerHeight) * 100;
+        setInterval(() => {
+            if(circle.textContent === "Loading") {
+                circle.textContent = "Loading.";
 
-                if(catImgWidthPX > catImgHeightPX) {
-                    wisdomDivLeftVW = 50 - catImgWidthVW / 2;
+            } else if(circle.textContent === "Loading.") {
+                circle.textContent = "Loading..";
 
-                    wisdomDiv.style.left = wisdomDivLeftVW + "vw";
-                    wisdomDiv.style.maxWidth = catImgWidthVW + "vw";
+            } else if(circle.textContent === "Loading..") {
+                circle.textContent = "Loading...";
 
-                } else {
-                    xPaddingVW = 30;
-
-                    wisdomDiv.style.left = xPaddingVW + "vw";
-                    wisdomDiv.style.maxWidth = (100 - 2 * xPaddingVW) + "vw";
-                }
-
-                wisdomDiv.classList.add("active");
-
-                adoptButton.classList.add("active");
-                abandonButton.classList.add("active");
-            }, 1500);
-        }
-    });
+            } else if(circle.textContent === "Loading...") {
+                circle.textContent = "Loading";
+            }
+        }, 500);
+    }
 </script>
 
 {% endblock %}
