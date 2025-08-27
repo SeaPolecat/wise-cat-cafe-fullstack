@@ -15,19 +15,21 @@
     <div id="background-div"></div>
 
     <form action="/home" method="GET">
-        <button id="cat-button-adopt" class="cat-button adopt">Adopt</button>
+        <button class="cat-button adopt">Adopt</button>
     </form>
 
     <form action="/home" method="GET">
-        <button id="cat-button-abandon" class="cat-button abandon">Abandon</button>
+        <button class="cat-button abandon">Abandon</button>
     </form>
 
     <div id="cat-div">
         <img id="cat-img" src="{{ img }}">
 
-        <div id="wisdom-div">bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh</div>
+        <div id="triangle-div"></div>
+
+        <div id="speech-div">Bro… I literally blink once and suddenly it’s 3AM, my drink is empty, my back hurts like I’ve been carrying the entire Roman Empire, and I don’t even remember what I was doing. Life really said “skill issue.”</div>
     </div>
-    
+
 </div>
 
 <!-- <form action="/adopt" method="POST">
@@ -42,13 +44,16 @@
     window.addEventListener("load", () => {
         var catImg = document.getElementById("cat-img");
         var catDiv = document.getElementById("cat-div");
+        var triangleDiv = document.getElementById("triangle-div");
         var wrapperDiv = document.getElementById("wrapper-div");
 
         if(catImg.offsetWidth >= catImg.offsetHeight) {
             catDiv.classList.add("horizontal");
             catImg.classList.add("horizontal");
+            triangleDiv.classList.add("horizontal");
         } else {
             catImg.classList.add("vertical");
+            triangleDiv.classList.add("vertical");
         }
         wrapperDiv.classList.add("active");
     });
