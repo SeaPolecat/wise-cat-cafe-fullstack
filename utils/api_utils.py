@@ -2,6 +2,8 @@ import os
 import requests
 from dotenv import load_dotenv
 import easyocr
+import cv2
+import numpy as np
 
 load_dotenv()
 
@@ -25,7 +27,11 @@ def get_wisdom() -> str:
     wisdom_text = '' # the actual text
 
     # setup ocr reader (configure language to be english)
-    reader = easyocr.Reader(['en'])
+    reader = easyocr.Reader(['en'], gpu=True)
+
+    resp = requests.get(wisdom_image)
+    img_array = np.frombuffer(resp.content, np.uint8)
+    wisdom_image = cv2.imdecode(img_array, cv2.IMREAD_GRAYSCALE)
 
     # use reader to extract text from the image
     ocr_result = reader.readtext(wisdom_image)
