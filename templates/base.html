@@ -6,9 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- double curly braces takes the code you write and gives the result as a string -->
-    <!-- do this to import css files with jinja -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     
     <!-- defines where the child files will add HTML code -->
     {% block head %}{% endblock %}
@@ -16,5 +14,22 @@
 
 <body>
     {% block body %}{% endblock %}
+
+    <form action="/login" method="GET">
+        <button class="login-button"
+        {% if current_user.is_authenticated %} style="pointer-events:none" {% endif %}>
+
+            <img class="login-img" src="{{ url_for('static', filename='images/user.png') }}">
+            
+            <h1 class="login-h1">
+                {% if current_user.is_authenticated %} {{ current_user.username }} {% else %} Log in {% endif %}
+            </h1>
+        </button>
+    </form>
+
+    <form action="/logout" method="GET"">
+        <button class="logout-button"
+        {% if not current_user.is_authenticated %} style="display:none" {% endif %}>Log out</button>
+    </form>
 </body>
 </html>

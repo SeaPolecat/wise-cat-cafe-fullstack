@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Log In - Wise Cat Café</title>
+{% endblock %}
+
+{% block body %}
+
+<form action="/login" method="POST">
+
+    <p style="color:green">{{ signup_success }}</p>
+    <p style="color:red">{{ login_error }}</p>
+
+    <h2>Username</h2>
+    <input type="text" name="username" value="{{ username }}" required>
+
+    <h2>Password</h2>
+    <input type="text" name="password" required>
+
+    <button>Log In</button>
+</form>
+
+<br>
+
+<form action="/signup" method="GET">
+    <button>Sign Up</button>
+</form>
+
+{% endblock %}

@@ -1,13 +1,69 @@
 <!-- inherit all the code from base.html -->
 {% extends 'base.html' %}
 
-<!-- add HTML code in here -->
+<!-- add HTML code in the blocks -->
 {% block head %}
+
+<!-- each page will now have its own style sheet -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+<title>Wise Cat Café</title>
 
 {% endblock %}
 
 {% block body %}
 
-<h1>WiWiWi!!!</h1>
+<video id="cafe-video" src="{{ url_for('static', filename='videos/cafe-video.mp4') }}"></video>
+
+<form id="summon-form" action="/summon" method="GET">
+    <button id="door-button"></button>
+</form>
+
+<div id="circle"></div>
+
+<script>
+    summonForm = document.getElementById("summon-form");
+
+    summonForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        doorButton = document.getElementById("door-button");
+        cafeVideo = document.getElementById("cafe-video");
+
+        doorButton.style.pointerEvents = "none";
+        cafeVideo.play();
+
+        setTimeout(() => {
+            circle.classList.add("expand");
+        }, 700);
+
+        setTimeout(() => {
+            activateLoadingText();
+
+            summonForm.submit();
+        }, 1800);
+    });
+
+    function activateLoadingText() {
+        circle = document.getElementById("circle");
+        
+        circle.textContent = "Loading";
+
+        setInterval(() => {
+            if(circle.textContent === "Loading") {
+                circle.textContent = "Loading.";
+
+            } else if(circle.textContent === "Loading.") {
+                circle.textContent = "Loading..";
+
+            } else if(circle.textContent === "Loading..") {
+                circle.textContent = "Loading...";
+
+            } else if(circle.textContent === "Loading...") {
+                circle.textContent = "Loading";
+            }
+        }, 500);
+    }
+</script>
 
 {% endblock %}

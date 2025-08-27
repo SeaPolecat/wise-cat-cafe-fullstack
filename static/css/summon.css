@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+
+:root {
+    --font: "fredoka";
+    --faint-pee: #fff5b2;
+    --dark-pee: #f7edae;
+    --darker-pee: #e8dea0;
+    --brown: #40290b;
+    --dark-gray: rgb(0, 0, 0, 0.5); /* #404040 */
+    --light-gradient-blue: #ccf3ff;
+    --dark-gradient-blue: #8ae3ff;
+}
+
+body {
+    overflow: hidden; /*no scroll*/
+    margin: 0;
+    background: var(--faint-pee);
+}
+
+/* div {
+    border: solid 2px red;
+} */
+
+div#wrapper-div {
+    opacity: 0;
+    transition: 0.5s linear;
+}
+
+div#wrapper-div.active {
+    opacity: 1;
+}
+
+div#background-div {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--faint-pee);
+    background-image: linear-gradient(var(--dark-pee) 3px, transparent 3px), linear-gradient(to right, var(--dark-pee) 3px, var(--faint-pee) 3px);
+    background-size: 58px 58px;
+}
+
+button.cat-button {
+    position: absolute;
+    display: block;
+    width: 200px;
+    top: 83vh;
+    padding: 5px 10px 5px 10px;
+    font: 35px var(--font);
+    color: var(--brown);
+    border: 2px solid var(--dark-gray);
+    transition: 0.2s;
+}
+
+button.cat-button:hover {
+    color: white;
+}
+
+button.cat-button.adopt {
+    transform: translate(-100%, 0);
+    left: 48vw;
+    background: linear-gradient(to right, var(--light-gradient-blue) , var(--dark-gradient-blue));
+    border-radius: 50px 10px 10px 50px;
+}
+
+button.cat-button.abandon {
+    left: 52vw;
+    background: linear-gradient(to right, var(--dark-gradient-blue), var(--light-gradient-blue));
+    border-radius: 10px 50px 50px 10px;
+}
+
+div#cat-div {
+    position: absolute;
+    display: flex;
+    transform: translate(-50%, -50%);
+    top: 42vh;
+    left: 50vw;
+}
+
+div#cat-div.horizontal {
+    flex-direction: column-reverse;
+}
+
+img#cat-img {
+    position: static;
+    display: block;
+    border: 5px solid var(--darker-pee);
+    border-radius: 5px;
+}
+
+img#cat-img.horizontal {
+    height: 400px;
+}
+
+img#cat-img.vertical {
+    height: 500px;
+}
+
+div#triangle-div {
+    position: relative;
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+div#triangle-div.horizontal {
+    left: 1.5vw;
+    border-top: 50px solid var(--dark-gray);
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+}
+
+div#triangle-div.vertical {
+    top: 1vw;
+    border-top: 15px solid transparent;
+    border-right: 50px solid var(--dark-gray);
+    border-bottom: 15px solid transparent;
+}
+
+div#speech-div {
+    position: static;
+    display: block;
+    width: fit-content;
+    height: fit-content;
+    padding: 15px;
+    font: 20px var(--font);
+    text-align: left;
+    align-items: center;
+    color: white;
+    background-color: var(--dark-gray);
+    border-radius: 15px;
+}

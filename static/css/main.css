@@ -1,4 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+
+/* css variables */
+:root {
+    --faint-pee: #fff5b2;
+    --brown: #40290b;
+}
+
 body {
+    overflow: hidden; /*no scroll*/
     margin: 0;
-    font-family: sans-serif;
+    background: var(--faint-pee);
+}
+
+video#cafe-video {
+    position: absolute;
+    display: block;
+    width: 130%;
+    top: -22vh;
+    left: -15vw;
+}
+
+button#door-button {
+    position: absolute;
+    display: block;
+    width: 156px;
+    height: 308px;
+    top: 375px;
+    left: 622px;
+    border: none;
+    opacity: 0;
+}
+
+div#circle {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0;
+    height: 0;
+    transform: translate(-50%, -50%);
+    top: 55vh;
+    left: 46.3vw;
+    font: 80px "fredoka";
+    color: var(--brown);
+    background: var(--faint-pee);
+    border-radius: 50%;
+    transition: 1s linear;
+}
+
+div#circle.expand {
+    width: 1750px;
+    height: 1750px;
+    top: 50vh;
+    left: 50vw;
 }
