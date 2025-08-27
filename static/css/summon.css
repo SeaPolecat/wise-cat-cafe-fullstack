@@ -1,87 +1,99 @@
-@import url('https://fonts.googleapis.com/css2?family=Capriola&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 
-img.cat-img {
-    position: absolute;
-    height: 1px;
-    top: 65vh;
-    left: 46vw;
+:root {
+    --font: "fredoka";
+    --faint-pee: #fff5b2;
+}
+
+body {
+    overflow: hidden; /*no scroll*/
+    margin: 0;
+    background: var(--faint-pee);
+}
+
+/* div {
+    border: solid 2px red;
+} */
+
+div#wrapper-div {
+    opacity: 0;
     transition: 1s linear;
-    opacity: 0;
 }
 
-img.cat-img.active {
-    transform: translate(-50%, -50%);
-    height: 400px;
-    top: 50vh;
-    left: 50vw;
+div#wrapper-div.active {
     opacity: 1;
 }
 
-div.wisdom-div {
+div#background-div {
     position: absolute;
-    display: flex;
-    top: 5vh;
-    background-color: white;
-    font-family: "capriola";
-    font-size: 20px;
-    text-align: left;
-    align-items: center;
-    border-radius: 10px;
-    padding: 15px;
-    opacity: 0;
-    transition: 0.5s;
-    z-index: 0;
-}
-
-div.wisdom-div.active {
-    opacity: 1;
-}
-
-button.adopt-button {
-    position: absolute;
-    display: none;
-    width: 200px;
-    transform: translate(-100%, 0);
-    top: 80vh;
-    left: 48vw;
-    color: #1A1A2E;
-    background-color: rgba(255, 255, 255, 0.5);
-    border: solid 2px rgba(46, 46, 46, 0.5); /* #2e2e2e */
-    border-radius: 8px;
-    font-family: "capriola";
-    font-size: 35px;
-    margin: 0;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    transition: 0.5s;
-}
-
-button.adopt-button.active {
     display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #fff5b2;
+    background-image:  linear-gradient(#f7edae 2.9000000000000004px, transparent 2.9000000000000004px), linear-gradient(to right, #f7edae 2.9000000000000004px, #fff5b2 2.9000000000000004px);
+    background-size: 58px 58px;
 }
 
-button.abandon-button {
+button.cat-button {
     position: absolute;
-    display: none;
+    display: block;
     width: 200px;
-    top: 80vh;
-    left: 52vw;
-    color: #1A1A2E;
-    background-color: rgba(255, 255, 255, 0.5);
-    border: solid 2px rgba(46, 46, 46, 0.5); /* #2e2e2e */
-    border-radius: 8px;
-    font-family: "capriola";
-    font-size: 35px;
+    top: 85vh;
     margin: 0;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 5px 10px 5px 10px;
+    font: 35px var(--font);
+    background: rgba(255, 255, 255, 0.5);
+    border: solid 2px rgba(46, 46, 46, 0.5); /* #2e2e2e */
+    border-radius: 10px;
+}
+
+button.cat-button.adopt {
+    transform: translate(-100%, 0);
+    left: 48vw;
     transition: 0.2s;
 }
 
-button.abandon-button.active {
+button.cat-button.abandon {
+    left: 52vw;
+    transition: 0.2s;
+}
+
+div#cat-div {
+    position: absolute;
+    display: flex;
+    transform: translate(-50%, -50%);
+    top: 42vh;
+    left: 50vw;
+}
+
+div#cat-div.horizontal {
+    flex-direction: column-reverse;
+}
+
+img#cat-img {
+    position: static;
     display: block;
+    height: 400px;
+}
+
+img#cat-img.horizontal {
+    margin: 75px 0 0 0;
+}
+
+img#cat-img.vertical {
+    height: 550px;
+    margin: 0 75px 0 0;
+}
+
+div#wisdom-div {
+    position: static;
+    display: block;
+    width: fit-content;
+    height: fit-content;
+    padding: 15px;
+    font: 20px var(--font);
+    text-align: left;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
 }

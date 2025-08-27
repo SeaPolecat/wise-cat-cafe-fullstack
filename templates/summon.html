@@ -10,9 +10,25 @@
 
 {% block body %}
 
-<img id="cat-img" class="cat-img" src="{{ img }}">
+<div id="wrapper-div">
 
-<div id="wisdom-div" class="wisdom-div">{{ wisdom }}</div>
+    <div id="background-div"></div>
+
+    <form action="/home" method="GET">
+        <button id="cat-button-adopt" class="cat-button adopt">Adopt</button>
+    </form>
+
+    <form action="/home" method="GET">
+        <button id="cat-button-abandon" class="cat-button abandon">Abandon</button>
+    </form>
+
+    <div id="cat-div">
+        <img id="cat-img" src="{{ img }}">
+
+        <div id="wisdom-div">bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh</div>
+    </div>
+    
+</div>
 
 <!-- <form action="/adopt" method="POST">
     <div
@@ -22,12 +38,20 @@
     </div>
 </form> -->
 
-<form action="/home" method="GET">
-    <button id="adopt-button" class="adopt-button">Adopt</button>
-</form>
+<script>
+    window.addEventListener("load", () => {
+        var catImg = document.getElementById("cat-img");
+        var catDiv = document.getElementById("cat-div");
+        var wrapperDiv = document.getElementById("wrapper-div");
 
-<form action="/home" method="GET">
-    <button id="abandon-button" class="abandon-button">Abandon</button>
-</form>
+        if(catImg.offsetWidth >= catImg.offsetHeight) {
+            catDiv.classList.add("horizontal");
+            catImg.classList.add("horizontal");
+        } else {
+            catImg.classList.add("vertical");
+        }
+        wrapperDiv.classList.add("active");
+    });
+</script>
 
 {% endblock %}
