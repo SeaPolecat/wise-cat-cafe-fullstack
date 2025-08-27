@@ -5,8 +5,8 @@
 <form action="/signup" method="POST">
 
     <h2>Username</h2>
-    <p style="color:red">{{ username_error }}</p>
-    <input type="text" name="username" value="{{ username }}" required></input>
+    <p id="username_error" style="color:red">{{ username_error }}</p>
+    <input id="test" type="text" name="username" value="{{ username }}" required>
 
     <h2>Password</h2>
     <p style="color:red">{{ password_error }}</p>
@@ -24,5 +24,25 @@
 <form action="/login" method="GET">
     <button>Back to Login</button>
 </form>
+
+
+<!-- script tag should be at the bottom of the page, so everything above loads first -->
+<script>
+    const username_input = document.getElementById('test');
+    const username_error = document.getElementById('username_error');
+    const regex = /^[a-zA-Z-_]{1,80}$/;
+    const msg = "bruh"
+
+    username_input.addEventListener('input', function() {
+
+        console.log("weee");
+
+        if(regex.test(this.value)) {
+            username_error.textContent = "";
+        } else {
+            username_error.textContent = msg;
+        }
+    })
+</script>
 
 {% endblock %}
