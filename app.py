@@ -44,7 +44,7 @@ def create_app(config_class=ProductionConfig):
 
     @app.route('/home', methods=['GET'])
     def home():
-        return render_template('index.html', hide_adopt=True)
+        return render_template('index.html')
     
     
     @app.route('/signup', methods=['GET', 'POST'])
@@ -117,7 +117,7 @@ def create_app(config_class=ProductionConfig):
         Cat.summon_cat(img=img, wisdom=wisdom)
 
         # render template with variables
-        return render_template('index.html', img=img, wisdom=wisdom, hide_summon=True)
+        return render_template('summon.html', img=img, wisdom=wisdom)
     
 
     @app.route('/adopt', methods=['GET', 'POST'])
