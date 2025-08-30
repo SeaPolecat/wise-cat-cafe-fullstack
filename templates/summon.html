@@ -14,14 +14,6 @@
 
     <div id="background-div"></div>
 
-    <form action="/home" method="GET">
-        <button class="cat-button adopt">Adopt</button>
-    </form>
-
-    <form action="/home" method="GET">
-        <button class="cat-button abandon">Abandon</button>
-    </form>
-
     <div id="cat-div">
         <img id="cat-img" src="{{ img }}">
 
@@ -30,17 +22,33 @@
         <div id="speech-div">Bro… I literally blink once and suddenly it’s 3AM, my drink is empty, my back hurts like I’ve been carrying the entire Roman Empire, and I don’t even remember what I was doing. Life really said “skill issue.”</div>
     </div>
 
+    <button id="adopt-cat-button" class="cat-button adopt">Adopt</button>
+
+    <form action="/home" method="GET">
+        <button id="abandon-cat-button" class="cat-button abandon">Abandon</button>
+    </form>
+
+    <div id="naming-div">
+        <form id="adopt-form" action="/adopt" method="POST">
+            <h1 id="naming-text">Please choose a name:</h1>
+
+            <input id="naming-input" type="text" name="name" autocomplete="off">
+
+            <button class="naming-button ok">OK</button>
+        </form>
+
+        <button id="back-naming-button" class="naming-button back">Back</button>
+
+        <p id="validation-p">Name can't be empty!</p>
+    </div>
+
 </div>
 
-<!-- <form action="/adopt" method="POST">
-    <div
-    {% if hide_adopt %} style="display:none" {% endif %}>
-        <input type="text" name="name" required>
-        <button>adopt!</button>
-    </div>
-</form> -->
-
 <script>
+    var adoptCatButton = document.getElementById("adopt-cat-button");
+    var backNamingButton = document.getElementById("back-naming-button");
+    var adoptForm = document.getElementById("adopt-form");
+
     window.addEventListener("load", () => {
         var catImg = document.getElementById("cat-img");
         var catDiv = document.getElementById("cat-div");
@@ -56,6 +64,41 @@
             triangleDiv.classList.add("vertical");
         }
         wrapperDiv.classList.add("active");
+    });
+
+    adoptCatButton.addEventListener("click", (event) => {
+        var abandonCatButton = document.getElementById("abandon-cat-button");
+        var namingDiv = document.getElementById("naming-div");
+
+        event.target.style.display = "none";
+        abandonCatButton.style.display = "none";
+
+        namingDiv.style.display = "block";
+    });
+
+    backNamingButton.addEventListener("click", () => {
+        var abandonCatButton = document.getElementById("abandon-cat-button");
+        var namingDiv = document.getElementById("naming-div");
+        var validationP = document.getElementById("validation-p");
+
+        namingDiv.style.display = "none";
+
+        adoptCatButton.style.display = "block";
+        abandonCatButton.style.display = "block";
+        validationP.style.display = "none";
+    });
+
+    adoptForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        var namingInput = document.getElementById("naming-input");
+        var validationP = document.getElementById("validation-p");
+
+        if(namingInput.value.trim() === "") {
+            validationP.style.display = "block";
+        } else {
+            adoptForm.submit();
+        }
     });
 </script>
 
