@@ -33,7 +33,7 @@ div#circle {
     color: var(--brown);
     background: var(--faint-pee);
     border-radius: 50%;
-    transition: 1s linear;
+    transition: 1s ease-out;
 }
 
 div#circle.expand {
