@@ -1,3 +1,30 @@
+/* 
+contains all variables and common elements present
+on every page
+*/
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+
+:root {
+    --font: "fredoka";
+    --faint-pee: #fff5b2;
+    --dark-pee: #f7edae;
+    --darker-pee: #e8dea0;
+    --brown: #40290b;
+    --dark-gray: rgb(0, 0, 0, 0.5); /* #404040 */
+    --light-gradient-blue: #ccf3ff;
+    --dark-gradient-blue: #8ae3ff;
+}
+
+/* div {
+    border: solid 2px red;
+} */
+
+body {
+    overflow: hidden; /*no scroll*/
+    margin: 0;
+    background: var(--faint-pee);
+}
+
 button.login-button {
     position: absolute;
     display: block;

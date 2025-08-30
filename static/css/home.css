@@ -1,16 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
-
-/* css variables */
-:root {
-    --faint-pee: #fff5b2;
-    --brown: #40290b;
-}
-
-body {
-    overflow: hidden; /*no scroll*/
-    margin: 0;
-    background: var(--faint-pee);
-}
+@import url("base.css");
 
 video#cafe-video {
     position: absolute;
