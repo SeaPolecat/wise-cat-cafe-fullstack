@@ -10,38 +10,34 @@
 
 {% block body %}
 
-<div id="wrapper-div">
+<div id="background-div"></div>
 
-    <div id="background-div"></div>
+<div id="cat-div">
+    <img id="cat-img" src="{{ img }}">
 
-    <div id="cat-div">
-        <img id="cat-img" src="{{ img }}">
+    <div id="triangle-div"></div>
 
-        <div id="triangle-div"></div>
+    <div id="speech-div">Bro… I literally blink once and suddenly it’s 3AM, my drink is empty, my back hurts like I’ve been carrying the entire Roman Empire, and I don’t even remember what I was doing. Life really said “skill issue.”</div>
+</div>
 
-        <div id="speech-div">Bro… I literally blink once and suddenly it’s 3AM, my drink is empty, my back hurts like I’ve been carrying the entire Roman Empire, and I don’t even remember what I was doing. Life really said “skill issue.”</div>
-    </div>
+<button id="adopt-cat-button" class="cat-button adopt">Adopt</button>
 
-    <button id="adopt-cat-button" class="cat-button adopt">Adopt</button>
+<form action="/home" method="GET">
+    <button id="abandon-cat-button" class="cat-button abandon">Abandon</button>
+</form>
 
-    <form action="/home" method="GET">
-        <button id="abandon-cat-button" class="cat-button abandon">Abandon</button>
+<div id="naming-div">
+    <form id="adopt-form" action="/adopt" method="POST">
+        <h1 id="naming-text">Please choose a name:</h1>
+
+        <input id="naming-input" type="text" name="name" autocomplete="off">
+
+        <button class="naming-button ok">OK</button>
     </form>
 
-    <div id="naming-div">
-        <form id="adopt-form" action="/adopt" method="POST">
-            <h1 id="naming-text">Please choose a name:</h1>
+    <button id="back-naming-button" class="naming-button back">Back</button>
 
-            <input id="naming-input" type="text" name="name" autocomplete="off">
-
-            <button class="naming-button ok">OK</button>
-        </form>
-
-        <button id="back-naming-button" class="naming-button back">Back</button>
-
-        <p id="validation-p">Name can't be empty!</p>
-    </div>
-
+    <p id="validation-p">Name can't be empty!</p>
 </div>
 
 <script>
@@ -53,7 +49,6 @@
         var catImg = document.getElementById("cat-img");
         var catDiv = document.getElementById("cat-div");
         var triangleDiv = document.getElementById("triangle-div");
-        var wrapperDiv = document.getElementById("wrapper-div");
 
         if(catImg.offsetWidth >= catImg.offsetHeight) {
             catDiv.classList.add("horizontal");
@@ -63,7 +58,6 @@
             catImg.classList.add("vertical");
             triangleDiv.classList.add("vertical");
         }
-        wrapperDiv.classList.add("active");
     });
 
     adoptCatButton.addEventListener("click", (event) => {

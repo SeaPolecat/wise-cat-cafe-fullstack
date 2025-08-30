@@ -27,6 +27,15 @@ body {
     background: var(--faint-pee);
 }
 
+div#wrapper-div {
+    opacity: 0;
+    transition: 1s linear;
+}
+
+div#wrapper-div.active {
+    opacity: 1;
+}
+
 button#login-button {
     position: absolute;
     display: flex;
@@ -36,7 +45,7 @@ button#login-button {
     background: var(--translucent-gray);
     border: solid 2px var(--translucent-dark-gray);
     border-radius: 10px;
-    transition: 0.2s;
+    transition: 0.2s linear;
 }
 
 button#login-button:hover {
@@ -71,7 +80,7 @@ button#logout-button {
     background: var(--translucent-gray);
     border: solid 2px var(--translucent-dark-gray);
     border-radius: 8px;
-    transition: 0.2s;
+    transition: 0.2s linear;
 }
 
 button#logout-button:hover {

@@ -13,7 +13,9 @@
 </head>
 
 <body>
-    {% block body %}{% endblock %}
+    <div id="wrapper-div">
+        {% block body %}{% endblock %}
+    </div>
 
     <form action="/login" method="GET">
         <button id="login-button" {% if current_user.is_authenticated %} style="pointer-events:none" {% endif %}>
@@ -29,5 +31,13 @@
     <form action="/logout" method="GET"">
         <button id="logout-button" {% if not current_user.is_authenticated %} style="display:none" {% endif %}>Log out</button>
     </form>
+
+    <script>
+        window.addEventListener("load", () => {
+            var wrapperDiv = document.getElementById("wrapper-div");
+
+            wrapperDiv.classList.add("active");
+        });
+    </script>
 </body>
 </html>

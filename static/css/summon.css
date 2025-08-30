@@ -1,14 +1,5 @@
 @import url("base.css");
 
-div#wrapper-div {
-    opacity: 0;
-    transition: 0.5s linear;
-}
-
-div#wrapper-div.active {
-    opacity: 1;
-}
-
 div#background-div {
     position: absolute;
     display: block;
