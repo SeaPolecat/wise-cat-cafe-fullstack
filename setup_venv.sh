@@ -11,11 +11,14 @@ if [ ! -d "$VENV_DIR" ]; then
 
   # Install dependencies from requirements.txt if it exists
   if [ -f "$REQUIREMENTS_FILE" ]; then
-    echo "Installing dependencies from $REQUIREMENTS_FILE, pytest, and pytest-mock..."
+    echo "Installing dependencies from $REQUIREMENTS_FILE..."
 
     pip install -r ${REQUIREMENTS_FILE}
-    pip install pytest
-    pip install pytest-mock
+
+    echo "Installing easyocr..."
+
+    pip install easyocr --only-binary=:all:
+    pip install "numpy<2" --force-reinstall
 
   else
     echo "Error: $REQUIREMENTS_FILE not found."

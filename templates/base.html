@@ -13,23 +13,31 @@
 </head>
 
 <body>
-    {% block body %}{% endblock %}
+    <div id="wrapper-div">
+        {% block body %}{% endblock %}
+    </div>
 
     <form action="/login" method="GET">
-        <button class="login-button"
-        {% if current_user.is_authenticated %} style="pointer-events:none" {% endif %}>
+        <button id="login-button" {% if current_user.is_authenticated %} style="pointer-events:none" {% endif %}>
 
-            <img class="login-img" src="{{ url_for('static', filename='images/user.png') }}">
+            <img id="login-img" src="{{ url_for('static', filename='images/user.png') }}">
             
-            <h1 class="login-h1">
+            <h1 id="login-h1">
                 {% if current_user.is_authenticated %} {{ current_user.username }} {% else %} Log in {% endif %}
             </h1>
         </button>
     </form>
 
     <form action="/logout" method="GET"">
-        <button class="logout-button"
-        {% if not current_user.is_authenticated %} style="display:none" {% endif %}>Log out</button>
+        <button id="logout-button" {% if not current_user.is_authenticated %} style="display:none" {% endif %}>Log out</button>
     </form>
+
+    <script>
+        window.addEventListener("load", () => {
+            var wrapperDiv = document.getElementById("wrapper-div");
+
+            wrapperDiv.classList.add("active");
+        });
+    </script>
 </body>
 </html>

@@ -1,50 +1,88 @@
-button.login-button {
-    position: absolute;
-    display: block;
-    top: 2vh;
-    left: 1vw;
-    background: rgba(255, 255, 255, 0.5);
-    border: none;
-    border-radius: 10px;
-    transition: 0.2s;
+/* 
+contains all variables and common elements present
+on every page
+*/
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+
+:root {
+    --font: "fredoka";
+    --faint-pee: #fff5b2;
+    --dark-pee: #f7edae;
+    --darker-pee: #e8dea0;
+    --brown: #40290b;
+    --translucent-gray: rgba(255, 255, 255, 0.5);
+    --translucent-dark-gray: rgba(46, 46, 46, 0.5); /* #2e2e2e */
+    --dark-gray: rgb(0, 0, 0, 0.5); /* #404040 */
+    --light-gradient-blue: #ccf3ff;
+    --dark-gradient-blue: #8ae3ff;
 }
 
-button.login-button:hover {
+/* div {
+    border: solid 2px red;
+} */
+
+body {
+    overflow: hidden; /*no scroll*/
+    margin: 0;
+    background: var(--faint-pee);
+}
+
+div#wrapper-div {
+    opacity: 0;
+    transition: 1s linear;
+}
+
+div#wrapper-div.active {
+    opacity: 1;
+}
+
+button#login-button {
+    position: absolute;
+    display: flex;
+    top: 1.3vh;
+    right: 0.5vw;
+    padding: 5px 5px 5px 5px;
+    background: var(--translucent-gray);
+    border: solid 2px var(--translucent-dark-gray);
+    border-radius: 10px;
+    transition: 0.2s linear;
+}
+
+button#login-button:hover {
     background: white;
 }
 
-img.login-img {
-    position: static;
-    display: inline-block;
-    width: 2.3vw;
-    padding: 8px 0 0 5px;
-}
-
-h1.login-h1 {
+img#login-img {
     position: relative;
     display: inline-block;
-    top: -0.55vh;
+    width: 2vw;
+    height: 2vw;
+}
+
+h1#login-h1 {
+    position: relative;
+    display: inline-block;
     margin: 0;
-    padding: 0 10px 0 0;
-    font: 30px "capriola";
+    padding: 0 5px 0 5px;
+    font: 25px var(--font);
     color: #2e2e2e;
 }
 
-button.logout-button {
+button#logout-button {
     position: absolute;
-    display: block;
-    top: 9.5vh;
-    left: 1vw;
+    display: flex;
+    top: 8vh;
+    right: 0.5vw;
     margin: 0;
-    padding: 5px 10px 5px 10px;
-    font: 20px "capriola";
+    padding: 5px 8px 5px 8px;
+    font: 18px var(--font);
     color: #1A1A2E;
-    background: rgba(255, 255, 255, 0.5);
-    border: solid 2px rgba(46, 46, 46, 0.5); /* #2e2e2e */
+    background: var(--translucent-gray);
+    border: solid 2px var(--translucent-dark-gray);
     border-radius: 8px;
-    transition: 0.2s;
+    transition: 0.2s linear;
 }
 
-button.logout-button:hover {
+button#logout-button:hover {
     background: white;
 }
